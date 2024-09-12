@@ -1,0 +1,16 @@
+.book-list-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.book-list-card {
+  width: 500px;
+}
+
+h6 {
+  text-align: center;
+  margin: 2rem 0 1rem 0;
+}

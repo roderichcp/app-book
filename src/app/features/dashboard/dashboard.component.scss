@@ -1,0 +1,28 @@
+p, small {
+  text-align: center;
+}
+
+p {
+  font-size: 2rem;
+  margin-top: 5rem;
+  font-weight: 500;
+}
+
+small, .mat-icon {
+  display: block;
+}
+
+small {
+  margin-bottom: 2rem;
+}
+
+.mat-icon {
+  margin: 0 auto;
+}
+
+.mat-icon.mat-accent {
+  height: 5rem!important;
+  width: 5rem!important;
+  overflow: auto!important;
+  font-size: 5rem;
+}

@@ -1,0 +1,23 @@
+<h6>Lista de Libros Detallado</h6>
+
+<div class="book-list-content">
+  @for (book of books; track book.id) {
+    <mat-card class="book-list-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ book.title }}</mat-card-title>
+          <mat-card-subtitle>No Pag: {{ book.pageCount }} Publicacion: {{ book.publishDate | date:'dd/MM/yyyy' }}</mat-card-subtitle>
+
+          @if(book.isFromApi) {
+            <img mat-card-sm-image src="not-img.jpg" >
+          }@else {
+            <img mat-card-sm-image [src]="book.imgUrl" >
+          }
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{ book.description }}
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

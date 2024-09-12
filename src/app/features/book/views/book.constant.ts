@@ -1,0 +1,2 @@
+export const KEY_BOOKS = 'LOCAL_STORAGE_BOOKS';
+export const KEY_GET_BOOKS_API = 'GET_BOOKS_API';

@@ -1,0 +1,44 @@
+h6 {
+  text-align: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.book-detail-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+
+  img {
+    width: 15%;
+  }
+}
+
+.book-detail-content-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
+  &-row {
+    max-width: 350px;
+
+    p {
+      margin: 0;
+    }
+
+    p:first-of-type {
+      font-size: 0.875rem;
+      color: darkgray;
+    }
+
+    p:last-of-type {
+      color: whitesmoke;
+    }
+  }
+}
+
+.book-detail-actions {
+  text-align: center;
+  margin: 2rem 0;
+}

@@ -1,0 +1,49 @@
+<h6 mat-dialog-title>Libro: {{ this.param.bookId > 0 ? 'Editar' : 'Nuevo' }}</h6>
+
+<mat-dialog-content>
+  <mat-form-field class="full-width">
+    <mat-label>Titulo</mat-label>
+
+    <input matInput [disabled]="this.param.isFromApi" [(ngModel)]="entityForm.title">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Url Imagen</mat-label>
+
+    <input matInput [disabled]="this.param.isFromApi" [(ngModel)]="entityForm.urlImg">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <mat-label>Descripcion</mat-label>
+
+    <textarea matInput rows="5" [disabled]="this.param.isFromApi" [(ngModel)]="entityForm.description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="page-count">
+    <mat-label>No Paginas</mat-label>
+
+    <input matInput [disabled]="this.param.isFromApi" [(ngModel)]="entityForm.pageCount">
+  </mat-form-field>
+
+  <mat-form-field class="publish-date">
+    <mat-label>Publicacion</mat-label>
+
+    <input matInput [disabled]="this.param.isFromApi" [matDatepicker]="picker" [(ngModel)]="entityForm.publishDate">
+    
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  @if(param.isFromApi) {
+    <p color="warn">No disponible para EDITAR</p>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancelar</button>
+  
+  <button mat-button color="primary" [disabled]="this.param.isFromApi" (click)="save()">Guardar</button>
+</mat-dialog-actions>

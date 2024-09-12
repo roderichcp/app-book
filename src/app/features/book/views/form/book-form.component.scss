@@ -1,0 +1,19 @@
+.full-width {
+  width: 100%;
+}
+
+.page-count {
+  width: calc(50% - 0.5rem);
+  margin-right: 0.5rem;
+}
+
+.publish-date {
+  width: calc(50% - 0.5rem);
+  margin-left: 0.5rem;
+}
+
+p {
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: 500;
+}

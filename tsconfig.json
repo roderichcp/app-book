@@ -22,7 +22,15 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@book/services": [
+        "./src/app/features/book/services"
+      ],
+      "@book/models": [
+        "./src/app/features/book/models"
+      ],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

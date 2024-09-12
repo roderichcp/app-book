@@ -1,0 +1,31 @@
+<h6>{{ data.title }}</h6>
+
+<div class="book-detail-content">
+  <img src="not-img.jpg" *ngIf="isFromApi === 1">
+
+  <img *ngIf="isFromApi !== 1" [src]="data.imgUrl">
+
+  <div class="book-detail-content-info">
+    <div class="book-detail-content-info-row">
+      <p>Descripcion</p>
+
+      <p>{{ data.description }}</p>
+    </div>
+
+    <div class="book-detail-content-info-row">
+      <p>No Paginas</p>
+
+      <p>{{ data.pageCount }}</p>
+    </div>
+
+    <div class="book-detail-content-info-row">
+      <p>Publicacion</p>
+
+      <p>{{ data.publishDate | date: 'dd/MM/yyyy' }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="book-detail-actions">
+  <button mat-flat-button cdkFocusInitial (click)="goToBooks()">VOLVER</button>
+</div>
