@@ -11,5 +11,4 @@ import { MatIcon } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
-
 }
