@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -21,11 +21,13 @@ import { KEY_BOOKS } from '../book.constant';
   imports: [
     CommonModule, MatDialogTitle, MatDialogContent, MatInputModule, MatDatepickerModule, MatDialogActions,
     MatButton, FormsModule, MatLabel
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookFormComponent {
   readonly #dialogRef = inject(MatDialogRef<BookFormComponent>);
   readonly param = inject<BookFormParamInterface>(MAT_DIALOG_DATA);
+  #changeDetectorRef = inject(ChangeDetectorRef);
 
   #bookService = inject(BookService);
 
@@ -77,6 +79,7 @@ export class BookFormComponent {
               this.entityForm.urlImg = value.imgUrl;
               this.entityForm.pageCount = value.pageCount;
               this.entityForm.publishDate = value.publishDate;
+              this.#changeDetectorRef.markForCheck();
             }
           })
       } else {

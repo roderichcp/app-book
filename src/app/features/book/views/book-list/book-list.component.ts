@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
@@ -11,7 +11,8 @@ import { KEY_BOOKS } from '../book.constant';
   standalone: true,
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.scss',
-  imports: [CommonModule, MatCardModule]
+  imports: [CommonModule, MatCardModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookListComponent {
   books!: Array<BookSearchInterface>;

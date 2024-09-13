@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -13,7 +13,8 @@ import { KEY_BOOKS } from '../book.constant';
   standalone: true,
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.scss',
-  imports: [CommonModule, MatButtonModule]
+  imports: [CommonModule, MatButtonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookDetailComponent {
   #bookService = inject(BookService);
