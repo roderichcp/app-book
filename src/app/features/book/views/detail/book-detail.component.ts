@@ -22,6 +22,7 @@ export class BookDetailComponent {
   #router = inject(Router);
   #route = inject(ActivatedRoute);
 
+
   bookId = 0;
   isFromApi = 0;
   book$: Observable<BookSearchInterface>
