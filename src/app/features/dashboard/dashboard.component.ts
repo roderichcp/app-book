@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { MatIcon } from '@angular/material/icon';
 
@@ -7,7 +7,8 @@ import { MatIcon } from '@angular/material/icon';
   standalone: true,
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
-  imports: [MatIcon]
+  imports: [MatIcon],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
 

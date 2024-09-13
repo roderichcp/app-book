@@ -1,9 +1,17 @@
 <h6>{{ data.title }}</h6>
 
 <div class="book-detail-content">
-  <img src="not-img.jpg" *ngIf="isFromApi === 1">
+  @defer (on timer(1s)) {
+    <img src="no_cover.jpg" *ngIf="isFromApi === 1">
 
-  <img *ngIf="isFromApi !== 1" [src]="data.imgUrl">
+    <img *ngIf="isFromApi !== 1" [src]="data.imgUrl">
+  }
+  @placeholder {
+    <img src="book-default.png">
+  }
+  @loading (minimum 1s) {
+    <span>Cargando portada...</span>
+  }
 
   <div class="book-detail-content-info">
     <div class="book-detail-content-info-row">

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -18,12 +18,14 @@ import { KEY_BOOKS, KEY_GET_BOOKS_API } from '../book.constant';
   standalone: true,
   templateUrl: './book-index.component.html',
   styleUrl: './book-index.component.scss',
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatTooltipModule, MatTableModule]
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatTooltipModule, MatTableModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookIndexComponent {
   #bookService = inject(BookService);
   #router = inject(Router);
   readonly #dialog = inject(MatDialog);
+  #changeDetectorRef = inject(ChangeDetectorRef);
 
   itemsSource = new Array<BookSearchInterface>();
   displayedColumns!: Array<string>;
@@ -82,7 +84,6 @@ export class BookIndexComponent {
         .subscribe({
           next: (value: Array<BookSearchInterface>) => {
             value.forEach(item => item.isFromApi = true);
-            console.log(value, 'RODRIGO');
             this.itemsSource = value;
             localStorage.setItem(KEY_BOOKS, JSON.stringify(value));
             localStorage.setItem(KEY_GET_BOOKS_API, 'false');
@@ -93,6 +94,8 @@ export class BookIndexComponent {
     } else {
       this.itemsSource = JSON.parse(localStorage.getItem(KEY_BOOKS) || '[]') as Array<BookSearchInterface>;
     }
+
+    this.#changeDetectorRef.markForCheck();
   }
 
   //#endregion Private Methods
