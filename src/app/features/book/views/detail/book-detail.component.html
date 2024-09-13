@@ -1,10 +1,12 @@
-<h6>{{ data.title }}</h6>
+@let book = (book$ | async);
+
+<h6>{{ book?.title }}</h6>
 
 <div class="book-detail-content">
   @defer (on timer(1s)) {
     <img src="no_cover.jpg" *ngIf="isFromApi === 1">
 
-    <img *ngIf="isFromApi !== 1" [src]="data.imgUrl">
+    <img *ngIf="isFromApi !== 1" [src]="book?.imgUrl">
   }
   @placeholder {
     <img src="book-default.png">
@@ -17,19 +19,19 @@
     <div class="book-detail-content-info-row">
       <p>Descripcion</p>
 
-      <p>{{ data.description }}</p>
+      <p>{{ book?.description }}</p>
     </div>
 
     <div class="book-detail-content-info-row">
       <p>No Paginas</p>
 
-      <p>{{ data.pageCount }}</p>
+      <p>{{ book?.pageCount }}</p>
     </div>
 
     <div class="book-detail-content-info-row">
       <p>Publicacion</p>
 
-      <p>{{ data.publishDate | date: 'dd/MM/yyyy' }}</p>
+      <p>{{ book?.publishDate | date: 'dd/MM/yyyy' }}</p>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -7,13 +7,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { BookService } from '@book/services';
 import { BookSearchInterface } from '@book/models';
 import { KEY_BOOKS } from '../book.constant';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'book-detail',
   standalone: true,
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.scss',
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule, MatButtonModule, AsyncPipe],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookDetailComponent {
@@ -21,21 +22,26 @@ export class BookDetailComponent {
   #router = inject(Router);
   #route = inject(ActivatedRoute);
 
-  data = {} as BookSearchInterface;
   bookId = 0;
   isFromApi = 0;
+  book$: Observable<BookSearchInterface>
 
   constructor() {
     this.#initializeComponent();
-    this.#loadData();
+    this.book$ = this.getData$();
   }
 
   goToBooks() {
     this.#router.navigate(['/books']);
   }
 
-  closeDialog() {
-    // this.#dialogRef.close();
+  getData$() {
+    if (this.isFromApi === 1) {
+      return this.#bookService.getBookById$(this.bookId);
+    } else {
+      const books = JSON.parse(localStorage.getItem(KEY_BOOKS) || '[]') as Array<BookSearchInterface>;
+      return of(books.find(p => p.id == this.bookId) || {} as BookSearchInterface);
+    }
   }
 
   //#region Private Methods
@@ -46,22 +52,6 @@ export class BookDetailComponent {
 
     this.bookId = parseInt(bookId);
     this.isFromApi = parseInt(isFromApi);
-  }
-
-  #loadData() {
-    if (this.isFromApi === 1) {
-      this.#bookService.getBookById$(this.bookId)
-        .subscribe({
-          next: (value: BookSearchInterface) => {
-            console.log(value);
-            this.data = value;
-          },
-          error: (e) => console.log(e)
-        });
-    } else {
-      const books = JSON.parse(localStorage.getItem(KEY_BOOKS) || '[]') as Array<BookSearchInterface>;
-      this.data = books.find(p => p.id == this.bookId) || {} as BookSearchInterface;
-    }
   }
 
   //#endregion Private Methods

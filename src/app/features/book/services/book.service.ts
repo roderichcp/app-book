@@ -28,9 +28,9 @@ export class BookService {
 
   getBookById$(bookId: number) {
     return this.http.get<BookSearchInterface>(`${this.#booksControllerV1}/books/${bookId}`)
-      .pipe(
-        takeUntilDestroyed()
-      );
+      // .pipe(
+      //   takeUntilDestroyed()
+      // );
   }
 
   //#endregion GET
