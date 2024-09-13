@@ -97,6 +97,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "defaultConfiguration": "production",
+          "configurations": {
+            "production": {
+              "baseHref": "https://roderichcp.github.io/app-book/",
+              "repo": "https://github.com/roderichcp/app-book"
+            }
+          }
         }
       }
     }
