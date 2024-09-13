@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -32,6 +32,8 @@ export class BookFormComponent {
   #bookService = inject(BookService);
 
   entityForm = new BookForm();
+  isFromApi = signal(this.param.isFromApi);
+  msgCandEdit = computed(() => this.isFromApi() ? 'No disponible para EDITAR' : '');
 
   constructor() {
     this.#loadData();

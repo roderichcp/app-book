@@ -37,9 +37,7 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  @if(param.isFromApi) {
-    <p color="warn">No disponible para EDITAR</p>
-  }
+  <p color="warn">{{ msgCandEdit() }}</p>
 </mat-dialog-content>
 
 <mat-dialog-actions>
